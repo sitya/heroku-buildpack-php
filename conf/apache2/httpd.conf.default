@@ -163,6 +163,7 @@ LoadModule dir_module libexec/mod_dir.so
 #LoadModule userdir_module libexec/mod_userdir.so
 LoadModule alias_module libexec/mod_alias.so
 LoadModule rewrite_module libexec/mod_rewrite.so
+LoadModule mod_shib /app/.heroku/php/lib/shibboleth/mod_shib_24.so
 
 <IfVersion < 2.4.10>
     # special treatment for Apache < 2.4.10 so we can SetHandler to mod_proxy_fcgi
