@@ -221,6 +221,10 @@ cp $BP_DIR/conf/nginx/nginx.conf.default $BUILD_DIR/.heroku/php/etc/nginx/nginx.
 mkdir -p $BUILD_DIR/.heroku/php/.versions/nginx
 echo $NGINX_VERSION > $BUILD_DIR/.heroku/php/.versions/nginx/nginx
 
+# install shibboleth
+echo "- Shibboleth 2.5.4" | indent
+$BP_DIR/support/build/shibboleth
+
 # handle extensions for PHP
 if [[ "${PHP_VERSION}" ]]; then
     status "Installing PHP extensions..."
