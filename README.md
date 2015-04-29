@@ -1,4 +1,8 @@
-# Heroku buildpack: PHP
+# Heroku buildpack: PHP with Shibboleth
+
+This repository is a fork of original Heroku buildpack for PHP applications. It sets up Shibboleth authentication for the application.
+
+----
 
 This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for PHP applications.
 

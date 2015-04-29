@@ -1,14 +1,18 @@
 {
     "name": "heroku/heroku-buildpack-php",
-    "description": "Toolkit for starting a PHP application locally, with or without foreman, using the same config for PHP/HHVM and Apache2/Nginx as on Heroku",
-    "keywords": ["heroku", "foreman", "php", "hhvm", "apache", "apache2", "nginx"],
-    "homepage": "http://github.com/heroku/heroku-buildpack-php",
+    "description": "Toolkit for starting a PHP application locally, with or without foreman, using the same config for PHP/HHVM and Apache2/Nginx as on Heroku with Shibboleth",
+    "keywords": ["heroku", "foreman", "php", "hhvm", "apache", "apache2", "nginx", "shibboleth"],
+    "homepage": "http://github.com/sitya/heroku-buildpack-php",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
             "name": "David Zuelke",
             "email": "dz@heroku.com"
+        },
+        {
+            "name": "Tamas Frank",
+            "email": "sitya@niif.hu"
         }
     ],
     "bin": [
