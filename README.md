@@ -2,18 +2,22 @@
 
 This repository is a fork of original Heroku buildpack for PHP applications. It sets up Shibboleth authentication for the application. If you don't need Shibboleth, use the original version of this buildpack.
 
-## Configuration
+## Configuration and usage
 
 To use Shibboleth you will need some additional file and a bit tuned `httpd.conf` file. You have to put all of them at your applications `/app/config` folder.
 
 1. Find the example [`shibboleth2.xml`](https://github.com/sitya/heroku-buildpack-php/blob/master/conf/shibboleth/shibboleth2.xml), configure it properly and place to your applications `/app/config` folder.
 1. Generate self-signed certificates for shibboleth and put the generated file to `/app/config`. Hint for generating: `openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout example.org.key.pem -out example.org.crt.pem`
-1. Configure Apache, use the prepared [`httpd.conf`](https://github.com/sitya/heroku-buildpack-php/blob/master/conf/apache2/heroku.conf) and place to your applications `/app/config` folder. You will find example  using Location with lazy-session and strict session as well. Avoiding Shibboleth's Binding exception you must set ServerName like `https://yourlocation.example.com:443`. Do not worry about that you are not using port 443, it is a [kind of cheating](https://wiki.shibboleth.net/confluence/display/SHIB2/SPReverseProxy) adviced by Shibboleth.
-1. Put [`web.sh`](https://github.com/sitya/heroku-buildpack-php/blob/master/bin/web.sh) to your applications `/app` folder and set up your `Procfile` to use it.
-```sh
-$ cat Procfile
-web: /app/web.sh
-```
+1. Configure Apache, use the prepared [`httpd.conf`](https://github.com/sitya/heroku-buildpack-php/blob/master/conf/apache2/heroku.conf) and place to your applications `/app/config` folder named `httpd.conf`. You will find example  using Location with lazy-session and strict session as well. Avoiding Shibboleth's Binding exception you must set ServerName like `https://yourlocation.example.com:443`. Do not worry about that you are not using port 443, it is a [kind of cheating](https://wiki.shibboleth.net/confluence/display/SHIB2/SPReverseProxy) adviced by Shibboleth.
+1. Put [`web.sh`](https://github.com/sitya/heroku-buildpack-php/blob/master/bin/web.sh) to your applications `/app` folder and set up your `Procfile` to use it. 
+`echo "web: /app/web.sh" > Procfile`
+
+1. Set up your application to be build using with this buildpack:
+`heroku config:set BUILDPACK_URL=https://github.com/sitya/heroku-buildpack-php`
+OR using [Deis](https://github.com/deis/deis):
+`deis config:set BUILDPACK_URL=https://github.com/sitya/heroku-buildpack-php`
+
+1. `git push heroku master` OR `git push deis master`
 
 ---
 
